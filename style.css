@@ -1,0 +1,16 @@
+/* style.css — owner: TABLE */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 24px;
+}
+
+/* TODO T1: Lay the cards out in a neat grid (4 across works for 16 cards),
+   and give them a look that fits your team's theme. */
+
+.card {
+  font-size: 2rem;
+  width: 80px;
+  height: 100px;
+  margin: 4px;
+}
