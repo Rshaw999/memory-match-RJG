@@ -3,6 +3,10 @@
 
 const tableEl = document.getElementById("table");
 const statusEl = document.getElementById("status");
+const winMessageEl = document.getElementById("win-message");
+const winMoveCountEl = document.getElementById("win-move-count");
+const newGameButton = document.getElementById("new-game");
+let hideMissTimer = null;
 
 function render() {
   state.cards.forEach(function (card, index) {
@@ -51,6 +55,7 @@ function render() {
     const front = button.querySelector(".card-front");
 
     button.dataset.index = index;
+    button.style.setProperty("--card-index", index);
     button.classList.toggle("is-flipped", isFaceUp);
     button.classList.toggle("is-matched", card.matched);
     button.setAttribute("aria-pressed", String(isFaceUp));
@@ -67,23 +72,40 @@ function render() {
   }
 
   statusEl.textContent = `Moves: ${state.moves} • Matches: ${state.matches} / ${PAIRS}`;
+  renderWinMessage();
+}
 
-  // TODO T3: When isWon() is true, show a win message with the move count.
+function renderWinMessage() {
+  const won = isWon();
+
+  tableEl.classList.toggle("is-celebrating", won);
+  winMessageEl.classList.toggle("is-visible", won);
+  winMessageEl.setAttribute("aria-hidden", String(!won));
+  if (won) {
+    winMoveCountEl.textContent = state.moves;
+  }
 }
 
 function handleClick(index) {
   const result = pickCard(index);
   render();
   if (result === "miss") {
-    setTimeout(function () {
+    hideMissTimer = setTimeout(function () {
       hideMiss();
+      hideMissTimer = null;
       render();
     }, 800);
   }
 }
 
-// TODO T3: Add a "New game" button to index.html. When it's clicked,
-// call newGame(PAIRS) and then render().
+newGameButton.addEventListener("click", function () {
+  if (hideMissTimer !== null) {
+    clearTimeout(hideMissTimer);
+    hideMissTimer = null;
+  }
+  newGame(PAIRS);
+  render();
+});
 
 newGame(PAIRS);
 render();
