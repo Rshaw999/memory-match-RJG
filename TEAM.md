@@ -1,5 +1,8 @@
-# Our Team
+Team 2
 
-Team name:
+Team name: RJG
 
 Members:
+Ryder
+Grant
+Jake
