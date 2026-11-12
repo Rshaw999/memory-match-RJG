@@ -38,6 +38,7 @@ function pickCard(index) {
   }
 
   state.secondPick = index;
+  state.moves = state.moves + 1;
   const firstCard = state.cards[state.firstPick];
 
   if (firstCard.face === card.face) {
@@ -50,7 +51,6 @@ function pickCard(index) {
   }
 
   state.locked = true;
-  // TODO R3: Add 1 to state.moves on every second pick.
 
   return "miss";
 }
@@ -69,6 +69,7 @@ function hideMiss() {
 }
 
 function isWon() {
-  // TODO R3: Return true when every card on the table is matched.
-  return false;
+  return state.cards.length > 0 && state.cards.every(function (card) {
+    return card.matched;
+  });
 }
