@@ -5,8 +5,8 @@
 const CARD_BACK = "?";
 
 function getFaces(pairs) {
-  // D1: Space-themed faces, with extras for games larger than eight pairs.
-  const faces = ["☀️", "🌙", "⭐", "🪐", "🚀", "🛸", "👽", "☄️", "🌍", "🌕", "🛰️", "🌌"];
+  // D1: Forest-themed faces, with extras for games larger than eight pairs.
+  const faces = ["🌲", "🌳", "🍄", "🦊", "🐻", "🦉", "🦌", "🐿️", "🦔", "🍃", "🌿", "🪵"];
 
   return faces.slice(0, pairs);
 }
