@@ -8,6 +8,35 @@ const winMoveCountEl = document.getElementById("win-move-count");
 const newGameButton = document.getElementById("new-game");
 let hideMissTimer = null;
 
+function bestScoreKey() {
+  return `memory-match-best-${state.cards.length / 2}`;
+}
+
+function loadBestScore() {
+  state.bestScore = null;
+  try {
+    const saved = window.localStorage.getItem(bestScoreKey());
+    const moves = Number(saved);
+    if (saved !== null && Number.isSafeInteger(moves) && moves > 0) {
+      state.bestScore = moves;
+    }
+  } catch (error) {
+    // The game still works if browser storage is unavailable.
+  }
+}
+
+function saveBestScoreIfWon() {
+  if (!isWon() || state.cards.length === 0) return;
+  if (state.bestScore !== null && state.moves >= state.bestScore) return;
+
+  state.bestScore = state.moves;
+  try {
+    window.localStorage.setItem(bestScoreKey(), String(state.bestScore));
+  } catch (error) {
+    // Keep the new best score visible for this session.
+  }
+}
+
 function render() {
   state.cards.forEach(function (card, index) {
     let button = tableEl.children[index];
@@ -71,7 +100,9 @@ function render() {
     tableEl.lastElementChild.remove();
   }
 
-  statusEl.textContent = `Moves: ${state.moves} • Matches: ${state.matches} / ${PAIRS}`;
+  saveBestScoreIfWon();
+  const best = state.bestScore === null ? "—" : `${state.bestScore} moves`;
+  statusEl.textContent = `Moves: ${state.moves} • Matches: ${state.matches} / ${state.cards.length / 2} • Best: ${best}`;
   renderWinMessage();
 }
 
@@ -104,8 +135,10 @@ newGameButton.addEventListener("click", function () {
     hideMissTimer = null;
   }
   newGame(PAIRS);
+  loadBestScore();
   render();
 });
 
 newGame(PAIRS);
+loadBestScore();
 render();

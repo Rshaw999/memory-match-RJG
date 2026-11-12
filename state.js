@@ -13,6 +13,7 @@ const state = {
   secondPick: null, // index of the second face-up card this turn, or null
   moves: 0,         // turns taken (one turn = two picks)
   matches: 0,       // pairs found so far
+  bestScore: null,   // fewest moves for this number of pairs, or null
   locked: false,    // true while a missed pair is still showing
 };
 
