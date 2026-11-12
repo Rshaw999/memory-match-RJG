@@ -5,9 +5,8 @@
 const CARD_BACK = "?";
 
 function getFaces(pairs) {
-  // TODO D1: Choose a theme and replace these letters with at least
-  // 10 faces (emoji or short words). Every face must be different.
-  const faces = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  // D1: Space-themed faces, with extras for games larger than eight pairs.
+  const faces = ["☀️", "🌙", "⭐", "🪐", "🚀", "🛸", "👽", "☄️", "🌍", "🌕", "🛰️", "🌌"];
 
   return faces.slice(0, pairs);
 }
