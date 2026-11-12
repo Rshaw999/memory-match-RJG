@@ -7,6 +7,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <svg class="vine-library" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="side-vine" viewBox="0 0 100 900">
+        <path class="vine-stem" d="M14 -20 C68 58 17 135 48 210 C78 280 22 350 55 425 C86 498 27 570 61 646 C88 708 42 792 74 920"></path>
+        <path class="vine-twig" d="M39 92 C58 82 67 69 73 51 M36 157 C24 144 20 129 18 111 M54 263 C68 251 76 236 79 219 M42 347 C30 334 23 317 20 300 M58 454 C72 442 81 427 84 410 M47 548 C34 536 26 518 22 500 M64 657 C76 645 83 629 86 611 M58 754 C43 741 34 723 28 706"></path>
+        <path class="vine-leaf" d="M73 51 C78 29 92 27 94 45 C96 59 83 65 73 51 Z"></path>
+        <path class="vine-leaf" d="M18 111 C10 89 0 91 2 109 C4 123 11 126 18 111 Z"></path>
+        <path class="vine-leaf" d="M79 219 C83 197 97 195 98 213 C99 227 88 233 79 219 Z"></path>
+        <path class="vine-leaf" d="M20 300 C11 278 1 281 3 300 C5 313 13 317 20 300 Z"></path>
+        <path class="vine-leaf" d="M84 410 C87 388 99 387 99 405 C99 418 92 424 84 410 Z"></path>
+        <path class="vine-leaf" d="M22 500 C12 478 2 482 5 501 C8 514 15 517 22 500 Z"></path>
+        <path class="vine-leaf" d="M86 611 C89 590 100 589 99 607 C98 620 92 625 86 611 Z"></path>
+        <path class="vine-leaf" d="M28 706 C16 684 5 690 9 708 C12 721 21 723 28 706 Z"></path>
+      </symbol>
+    </defs>
+  </svg>
+  <svg class="vine-border vine-border-left" viewBox="0 0 100 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <use href="#side-vine"></use>
+  </svg>
+  <svg class="vine-border vine-border-right" viewBox="0 0 100 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <use href="#side-vine"></use>
+  </svg>
+
   <h1>Memory Match</h1>
   <section id="win-message" class="win-inline" aria-labelledby="win-title" aria-live="polite" aria-atomic="true" aria-hidden="true">
     <div class="win-inline-clip">
