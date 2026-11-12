@@ -66,8 +66,7 @@ function render() {
     tableEl.lastElementChild.remove();
   }
 
-  // TODO T2: Show the number of moves and matches in statusEl.
-  statusEl.textContent = "";
+  statusEl.textContent = `Moves: ${state.moves} • Matches: ${state.matches} / ${PAIRS}`;
 
   // TODO T3: When isWon() is true, show a win message with the move count.
 }
