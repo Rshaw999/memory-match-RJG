@@ -45,6 +45,14 @@
 
   <div class="game-toolbar">
     <p id="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="difficulty-picker" role="group" aria-label="Difficulty">
+      <button id="easy-game" class="difficulty-button is-selected" type="button" data-pairs="6" aria-pressed="true">
+        Easy <span>6 pairs</span>
+      </button>
+      <button id="hard-game" class="difficulty-button" type="button" data-pairs="12" aria-pressed="false">
+        Hard <span>12 pairs</span>
+      </button>
+    </div>
     <button id="new-game" class="new-game-button" type="button">New game</button>
   </div>
   <div id="table"></div>
