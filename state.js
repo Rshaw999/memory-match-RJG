@@ -2,8 +2,9 @@
 // Every file reads this. Nobody edits it alone.
 // To change it: open a pull request and get approval from EVERY teammate.
 
-// How many pairs of cards are on the table.
-const PAIRS = 8;
+// How many pairs of cards are on the table. S2 changes this when players
+// choose Easy or Hard.
+let PAIRS = 6;
 
 // One card looks like this: { face: "🍕", flipped: false, matched: false }
 

@@ -6,6 +6,7 @@ const statusEl = document.getElementById("status");
 const winMessageEl = document.getElementById("win-message");
 const winMoveCountEl = document.getElementById("win-move-count");
 const newGameButton = document.getElementById("new-game");
+const difficultyButtons = document.querySelectorAll(".difficulty-button");
 let hideMissTimer = null;
 
 function bestScoreKey() {
@@ -103,6 +104,11 @@ function render() {
   saveBestScoreIfWon();
   const best = state.bestScore === null ? "—" : `${state.bestScore} moves`;
   statusEl.textContent = `Moves: ${state.moves} • Matches: ${state.matches} / ${state.cards.length / 2} • Best: ${best}`;
+  difficultyButtons.forEach(function (button) {
+    const isSelected = Number(button.dataset.pairs) === PAIRS;
+    button.classList.toggle("is-selected", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
   renderWinMessage();
 }
 
@@ -129,14 +135,25 @@ function handleClick(index) {
   }
 }
 
-newGameButton.addEventListener("click", function () {
+function startNewGame(pairs) {
   if (hideMissTimer !== null) {
     clearTimeout(hideMissTimer);
     hideMissTimer = null;
   }
+  PAIRS = pairs;
   newGame(PAIRS);
   loadBestScore();
   render();
+}
+
+difficultyButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    startNewGame(Number(button.dataset.pairs));
+  });
+});
+
+newGameButton.addEventListener("click", function () {
+  startNewGame(PAIRS);
 });
 
 newGame(PAIRS);
